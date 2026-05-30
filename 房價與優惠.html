@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>房價與優惠 Rates｜純粹愛大海 Pure Love the Sea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  .block{padding:clamp(48px,7vw,84px) var(--pad);}
+  .block--sand{background:var(--sand);}
+  .block--dark{background:var(--dark);color:var(--cream);}
+  .blockhead{text-align:center;margin-bottom:clamp(30px,4vw,48px);}
+  .blockhead .eyebrow{margin-bottom:12px;}
+  .blockhead h2{font-size:clamp(28px,4.2vw,46px);font-weight:800;letter-spacing:0.03em;}
+  .blockhead p{font-size:clamp(15px,1.5vw,18px);color:var(--ink-soft);margin:16px auto 0;max-width:680px;line-height:1.7;text-wrap:pretty;}
+  .block--dark .blockhead p{color:rgba(241,227,207,0.8);}
+
+  .how{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1000px;margin:0 auto;}
+  .how .c{background:var(--paper);border:1px solid var(--line);padding:32px 28px;}
+  .how .c .n{font-family:var(--grot);font-weight:800;font-size:15px;color:var(--wood);letter-spacing:0.1em;}
+  .how .c h3{font-size:21px;font-weight:700;margin-top:12px;}
+  .how .c p{font-size:15px;color:var(--ink-soft);margin-top:10px;line-height:1.7;}
+
+  .calc{max-width:780px;margin:36px auto 0;border:1px solid var(--line);background:var(--paper);}
+  .calc .lab{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-align:center;padding:14px;
+    background:var(--sand-deep);color:var(--wood-deep);border-bottom:1px solid var(--line);}
+  .calc .pick{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:26px 24px 6px;}
+  .calc .pick button{font-family:var(--sans);font-size:15px;border:1.5px solid var(--line);background:transparent;
+    color:var(--ink);padding:11px 20px;cursor:pointer;transition:all .18s;letter-spacing:0.02em;white-space:nowrap;}
+  .calc .pick button:hover{border-color:var(--wood);}
+  .calc .pick button.on{background:var(--wood);border-color:var(--wood);color:var(--paper);}
+  .calc .out{display:flex;align-items:baseline;justify-content:center;gap:14px;flex-wrap:wrap;
+    padding:8px 24px 30px;text-align:center;}
+  .calc .out .eq{font-size:16px;color:var(--ink-soft);}
+  .calc .out .eq b{font-family:var(--grot);font-weight:700;color:var(--ink);}
+  .calc .out .total{font-size:16px;color:var(--ink-soft);}
+  .calc .out .total b{font-family:var(--grot);font-weight:800;font-size:34px;color:var(--wood-deep);letter-spacing:0;}
+  .calc .hint{text-align:center;font-size:13px;color:var(--ink-faint);padding:0 24px 22px;}
+
+  .perks{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto;}
+  .perk{border:1px solid var(--line);padding:36px 34px;background:var(--paper);}
+  .perk .eyebrow{margin-bottom:14px;}
+  .perk h3{font-size:24px;font-weight:800;}
+  .perk .big{font-family:var(--grot);font-weight:800;font-size:clamp(30px,4vw,42px);color:var(--wood-deep);margin:16px 0 4px;}
+  .perk p{font-size:15px;color:var(--ink-soft);line-height:1.7;margin-top:10px;}
+  .perk ul{list-style:none;margin-top:16px;display:grid;gap:9px;}
+  .perk ul li{font-size:15px;display:flex;gap:11px;align-items:baseline;}
+  .perk ul li::before{content:"";width:6px;height:6px;background:var(--wood);flex:0 0 auto;transform:translateY(-1px);}
+
+  .pay{max-width:880px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;}
+  .pay .acct{border:1px solid rgba(241,227,207,0.25);padding:34px;}
+  .pay .acct .row2{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(241,227,207,0.16);}
+  .pay .acct .row2:last-child{border-bottom:none;}
+  .pay .acct .k{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;}
+  .pay .acct .v{font-size:17px;font-weight:700;text-align:right;}
+  .pay .acct .v.mono{font-family:var(--grot);letter-spacing:0.04em;}
+  .pay .alt{padding:34px 0;}
+  .pay .alt h4{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.6;margin-bottom:18px;}
+  .pay .alt .chips span{border-color:rgba(241,227,207,0.3);color:var(--cream);background:transparent;}
+
+  .cxl{max-width:880px;margin:0 auto;border:1px solid var(--line);}
+  .cxl .r{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:16px 26px;border-bottom:1px solid var(--line-soft);}
+  .cxl .r:last-child{border-bottom:none;}
+  .cxl .r:nth-child(odd){background:var(--paper);}
+  .cxl .r .when{font-size:16px;}
+  .cxl .r .when small{display:block;font-family:var(--grot);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;margin-top:3px;}
+  .cxl .r .pct{font-family:var(--grot);font-weight:800;font-size:22px;}
+  .cxl .r .pct.good{color:#1F8A5B;}
+  .cxl .r .pct.warn{color:var(--wood-deep);}
+  .cxl .force{background:var(--sand);border:1px solid var(--line);border-top:none;padding:20px 26px;font-size:14px;color:var(--ink-soft);line-height:1.7;}
+
+  .cta-bg{position:absolute;inset:0;background-image:url('public/images/環境/戶外1.jpeg');background-size:cover;background-position:center;}
+  .cta-bg::before{content:"";position:absolute;inset:0;background:rgba(28,22,16,0.56);}
+
+  @media(max-width:760px){
+    .how{grid-template-columns:1fr;} .perks{grid-template-columns:1fr;}
+    .pay{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav nav--solid">
+  <a class="brand" href="index.html"><b>純粹愛大海</b><small>Pure Love the Sea</small></a>
+  <div class="links">
+    <a href="index.html">首頁</a>
+    <a href="房型.html">房型</a>
+    <a href="房價與優惠.html" class="active">房價・優惠</a>
+    <a href="預訂須知.html">預訂須知</a>
+    <a class="book" href="https://line.me/ti/p/~0913516760">Line 預訂</a>
+  </div>
+  <button class="burger" aria-label="選單"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="pagehead">
+  <div class="eyebrow">Rates &amp; Offers</div>
+  <h1>房價與優惠</h1>
+  <div class="lat">Per-night rates · the longer you stay, the better</div>
+  <p>我們一天只接待一組客人，所有價格都是<b>每晚均價（per night）</b>。連續住的晚數越多，平均每晚越優惠。</p>
+</header>
+
+<!-- 計價方式 -->
+<section class="block">
+  <div class="blockhead">
+    <div class="eyebrow">How Pricing Works</div>
+    <h2>計價方式</h2>
+    <p>很單純：一天一組客人、整棟空間都是你們的，費用以房間數與天數計算。</p>
+  </div>
+  <div class="how">
+    <div class="c"><div class="n">01</div><h3>一天一組客人</h3><p>不與其他旅客併住，整棟空間都屬於你們這一組。<br><span style="font-family:var(--grot);font-size:13px;">One group a day, the whole house.</span></p></div>
+    <div class="c"><div class="n">02</div><h3>房間數 × 天數</h3><p>住宿費以「房間數」乘上「住宿天數」計算。<br><span style="font-family:var(--grot);font-size:13px;">By number of rooms × nights.</span></p></div>
+    <div class="c"><div class="n">03</div><h3>價格都是「每晚」</h3><p>下方表格與試算的數字皆為每晚均價，連住越多晚、每晚越低。<br><span style="font-family:var(--grot);font-size:13px;">All figures are per-night.</span></p></div>
+  </div>
+</section>
+
+<!-- 每晚均價表 -->
+<section class="block block--sand">
+  <div class="blockhead">
+    <div class="eyebrow">Per-night Rates</div>
+    <h2>每房・每晚均價</h2>
+    <p>連住的晚數越多，平均每晚越划算。下列皆為「每一間房、每一晚」的價格。</p>
+  </div>
+  <div class="rate-strip">
+    <div class="rate-note">以下皆為 <b>每晚</b> 價格 · all prices are <b>per night</b></div>
+    <div class="rate-grid" id="rateGrid"></div>
+  </div>
+  <div class="calc" id="cxl">
+    <div class="lab">試算 · 每晚 × 晚數 = 總價　Estimate your total</div>
+    <div class="pick" id="pick"></div>
+    <div class="out" id="out"></div>
+    <div class="hint">以上為「單一房間」的金額，多訂一間即乘以房間數。連住 5 晚以上、或加床需求，歡迎 Line 洽詢。</div>
+  </div>
+</section>
+
+<!-- 優惠 -->
+<section class="block">
+  <div class="blockhead">
+    <div class="eyebrow">Offers</div>
+    <h2>更多優惠</h2>
+  </div>
+  <div class="perks">
+    <div class="perk">
+      <div class="eyebrow">Returning Guests</div>
+      <h3>老客人回訪</h3>
+      <div class="big">每晚再折 NT$ 700</div>
+      <p>謝謝你再回到海邊。老朋友回訪，在上面的每晚均價之上，每晚再折 700 元。</p>
+      <ul>
+        <li>續住 5 日，可享每晚 <b>NT$ 5,500</b> 最低優惠</li>
+        <li>Lowest rate NT$ 5,500 / night for returning guests on a 5-night stay</li>
+      </ul>
+    </div>
+    <div class="perk">
+      <div class="eyebrow">Extra Bed · Children</div>
+      <h3>加床與孩童</h3>
+      <div class="big">加床 每晚 NT$ 1,000</div>
+      <p>讓更多人一起住進海邊。</p>
+      <ul>
+        <li>滿三歲以上加床：每晚 <b>NT$ 1,000</b></li>
+        <li>未滿三歲、不加床：每晚酌收 <b>NT$ 800</b></li>
+        <li>各房可加床數請見 <a href="房型.html" style="color:var(--wood-deep);text-decoration:underline;">房型</a> 頁</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 付款方式 -->
+<section class="block block--dark">
+  <div class="blockhead">
+    <div class="eyebrow" style="color:#E9C9A6;">Payment</div>
+    <h2>訂金與付款</h2>
+    <p>確認訂房後，請於約定時間內支付訂金以保留日期。</p>
+  </div>
+  <div class="pay">
+    <div class="acct">
+      <div class="row2"><span class="k">戶名 Name</span><span class="v">劉奕治</span></div>
+      <div class="row2"><span class="k">銀行 Bank</span><span class="v">永豐銀行 中壢分行</span></div>
+      <div class="row2"><span class="k">代號 Code</span><span class="v mono">807</span></div>
+      <div class="row2"><span class="k">帳號 Account</span><span class="v mono">02400491053506</span></div>
+    </div>
+    <div class="alt">
+      <h4>也可使用電子支付</h4>
+      <div class="chips">
+        <span>Line Pay</span><span>悠遊 Pay</span><span>街口支付</span><span>台灣 Pay</span>
+      </div>
+      <p style="font-size:14px;opacity:0.75;margin-top:18px;line-height:1.7;">以上電子支付皆以金融卡進行。確認後請以 Line 與我們對帳。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 取消規定 -->
+<section class="block block--sand">
+  <div class="blockhead">
+    <div class="eyebrow">Cancellation</div>
+    <h2>取消規定</h2>
+    <p>因為一天只接待一組客人，每一筆訂房我們都會推掉其他預訂。訂金扣款依交通部觀光局《定型化契約》規定如下（扣除預付訂金之比率）。</p>
+  </div>
+  <div class="cxl">
+    <div class="r"><div class="when">住宿當日取消 <small>On the day of stay</small></div><div class="pct warn">扣 100%</div></div>
+    <div class="r"><div class="when">住宿日前 1 日內 <small>1 day before</small></div><div class="pct warn">扣 80%</div></div>
+    <div class="r"><div class="when">住宿日前 2–3 日內 <small>2–3 days before</small></div><div class="pct warn">扣 70%</div></div>
+    <div class="r"><div class="when">住宿日前 4–6 日內 <small>4–6 days before</small></div><div class="pct">扣 60%</div></div>
+    <div class="r"><div class="when">住宿日前 7–9 日內 <small>7–9 days before</small></div><div class="pct">扣 50%</div></div>
+    <div class="r"><div class="when">住宿日前 10–13 日內 <small>10–13 days before</small></div><div class="pct">扣 30%</div></div>
+    <div class="r"><div class="when">住宿日前 14 日（含）前 <small>14+ days before</small></div><div class="pct good">扣 0%</div></div>
+  </div>
+  <div class="cxl force">
+    🌀 <b>天災不可抗力：</b>如遇地震、颱風等天災導致交通中斷無法前來，經主管單位發布之訊息，<b>可全額退還訂金 100%</b>。<br>
+    臨時無法前來之個別旅客退費，依交通部「個別旅客訂房定型化契約」辦理，並扣取手續費 15 元。
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-bg"></div>
+  <div class="eyebrow" style="color:#E9C9A6;">Reserve Your Stay</div>
+  <h2>選好日期就來預訂吧</h2>
+  <a class="btn btn--cream" href="https://line.me/ti/p/~0913516760">以 Line 預訂 →</a>
+  <div class="sub">LINE ID 0913516760　|　預訂前請先看 <a href="預訂須知.html" style="text-decoration:underline;">預訂須知</a></div>
+</section>
+
+<footer class="footer">
+  <div class="top">
+    <div class="brand">
+      <b>純粹愛大海</b><small>Pure Love the Sea</small>
+      <p>花蓮縣豐濱鄉・面向太平洋的家庭民宿。一天一組客人，與主人同住，分享海邊的生活。</p>
+    </div>
+    <div>
+      <h4>導覽 Navigate</h4>
+      <ul>
+        <li><a href="index.html">首頁 Home</a></li>
+        <li><a href="房型.html">房型 Rooms</a></li>
+        <li><a href="房價與優惠.html">房價・優惠 Rates</a></li>
+        <li><a href="預訂須知.html">預訂須知 Info</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>聯絡 Contact</h4>
+      <ul>
+        <li>Line ID · 0913516760</li>
+        <li><a href="https://line.me/ti/p/~0913516760">以 Line 預訂 →</a></li>
+        <li>入住 16:00 後・退房 12:00 前</li>
+        <li>花蓮縣豐濱鄉</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bot">
+    <span>© 2026 純粹愛大海 Pure Love the Sea</span>
+    <span>一天一組客人 · 與山海一起生活</span>
+  </div>
+</footer>
+
+<script>
+  const RATES = [
+    {n:1, price:9000, cn:"任意一晚",  en:"1 night"},
+    {n:2, price:8300, cn:"連住 2 晚", en:"2 nights"},
+    {n:3, price:7600, cn:"連住 3 晚", en:"3 nights"},
+    {n:4, price:6900, cn:"連住 4 晚", en:"4 nights"},
+    {n:5, price:6200, cn:"連住 5 晚", en:"5 nights"},
+  ];
+  const base = RATES[0].price;
+  document.getElementById('rateGrid').innerHTML = RATES.map(r=>{
+    const save = base - r.price;
+    return `<div class="rate-card${r.n>1?' rate-card--save':''}">
+      <div class="rc-nights">${r.cn}<small>${r.en}</small></div>
+      <div class="rc-price"><span class="cur">每晚 NT$</span><b>${r.price.toLocaleString()}</b></div>
+      <div class="rc-per">/ 晚 per night</div>
+      <div class="rc-sub">${r.n} 晚合計 NT$ ${(r.price*r.n).toLocaleString()}</div>
+      ${save>0?`<div class="rc-tag">每晚省 ${save.toLocaleString()}</div>`:`<div class="rc-tag rc-tag--ghost">標準價</div>`}
+    </div>`;
+  }).join('');
+
+  const pick = document.getElementById('pick');
+  const out = document.getElementById('out');
+  pick.innerHTML = RATES.map(r=>`<button data-n="${r.n}">${r.n} 晚</button>`).join('');
+  function render(n){
+    const r = RATES.find(x=>x.n===n);
+    [...pick.children].forEach(b=> b.classList.toggle('on', +b.dataset.n===n));
+    out.innerHTML = `<span class="eq">每晚 <b>NT$ ${r.price.toLocaleString()}</b> × ${n} 晚</span>
+      <span class="eq" style="opacity:.5;">=</span>
+      <span class="total">單間總價 <b>NT$ ${(r.price*n).toLocaleString()}</b></span>`;
+  }
+  pick.addEventListener('click', e=>{ const b=e.target.closest('button'); if(b) render(+b.dataset.n); });
+  render(2);
+</script>
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>房型 Rooms｜純粹愛大海 Pure Love the Sea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  .roomsec{padding-top:clamp(56px,8vw,96px);}
+  .roomsec .pic{min-height:clamp(340px,48vw,600px);overflow:hidden;}
+  .roomsec .pic img{width:100%;height:100%;object-fit:cover;display:block;}
+  .roomsec .txt{padding:clamp(40px,6vw,82px);}
+  .roomsec .stats{display:flex;flex-wrap:wrap;gap:26px 40px;margin-top:26px;padding-top:24px;border-top:1px solid var(--line);}
+  .roomsec .stat .k{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);}
+  .roomsec .stat .v{font-size:18px;font-weight:700;margin-top:5px;}
+  .roomsec .stat .v small{font-weight:400;color:var(--ink-soft);font-size:0.78em;}
+  .common{background:var(--sand);padding:clamp(60px,8vw,100px) var(--pad);}
+  .common .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 56px;max-width:980px;margin:40px auto 0;}
+  .cta-bg{position:absolute;inset:0;background-image:url('public/images/環境/戶外2.jpeg');background-size:cover;background-position:center;}
+  .cta-bg::before{content:"";position:absolute;inset:0;background:rgba(28,22,16,0.56);}
+  @media(max-width:860px){ .common .grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav class="nav nav--solid">
+  <a class="brand" href="index.html"><b>純粹愛大海</b><small>Pure Love the Sea</small></a>
+  <div class="links">
+    <a href="index.html">首頁</a>
+    <a href="房型.html" class="active">房型</a>
+    <a href="房價與優惠.html">房價・優惠</a>
+    <a href="預訂須知.html">預訂須知</a>
+    <a class="book" href="https://line.me/ti/p/~0913516760">Line 預訂</a>
+  </div>
+  <button class="burger" aria-label="選單"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="pagehead">
+  <div class="eyebrow">The Rooms</div>
+  <h1>三間面海房</h1>
+  <div class="lat">Brownie · Tiao-Lang · Xinshe Terrace</div>
+  <p>一天只接待一組客人（1–10 人），整棟空間都屬於你們。三間房各有性格，但都有一個共通點——每間，皆面海。</p>
+</header>
+
+<!-- 布朗尼 -->
+<section class="rows roomsec" id="brownie">
+  <article class="row">
+    <div class="pic"><img src="public/images/房型/布朗尼/IMG_7296.jpeg" alt="布朗尼房間" /></div>
+    <div class="txt">
+      <div class="no">01 / 03</div>
+      <h3>布朗尼</h3>
+      <div class="ren">Brownie</div>
+      <p class="desc">溫馨平面型 4 人家庭房。平面動線、進出方便，很適合帶著長輩與孩子的家庭。<br>A cozy ground-floor family room — easy, step-free, made for families.</p>
+      <div class="stats">
+        <div class="stat"><div class="k">床型 Bed</div><div class="v">Queen <small>182×190 cm</small></div></div>
+        <div class="stat"><div class="k">人數 Sleeps</div><div class="v">4 人 <small>可加 1 床</small></div></div>
+        <div class="stat"><div class="k">樓層 Floor</div><div class="v">平面 <small>Ground</small></div></div>
+      </div>
+      <a class="more" href="https://www.facebook.com/share/151w2YS9Zm/">FB 相簿看更多 →</a>
+    </div>
+  </article>
+</section>
+
+<!-- 跳浪 -->
+<section class="rows roomsec" id="tiaolang">
+  <article class="row rev">
+    <div class="pic"><img src="public/images/房型/跳浪/IMG_7255.jpeg" alt="跳浪閣樓房" /></div>
+    <div class="txt">
+      <div class="no">02 / 03</div>
+      <h3>跳浪</h3>
+      <div class="ren">Jumping Waves</div>
+      <p class="desc">香杉閣樓型 4 人房，帶著木頭的香氣與閣樓的視角。<br>A cedar-scented loft room with a view from above.</p>
+      <div class="stats">
+        <div class="stat"><div class="k">床型 Bed</div><div class="v">King <small>182×212 cm</small></div></div>
+        <div class="stat"><div class="k">人數 Sleeps</div><div class="v">4 人 <small>可加 1 床</small></div></div>
+        <div class="stat"><div class="k">特色 Note</div><div class="v">香杉閣樓</div></div>
+      </div>
+      <p class="meta" style="color:var(--wood-deep);">⚠ 閣樓階梯較陡，10 歲以下請家長特別留意孩童安全。<br>Loft stairs are steep — please watch children under 10.</p>
+      <a class="more" href="https://www.facebook.com/share/15MPStsqdy/">FB 相簿看更多 →</a>
+    </div>
+  </article>
+</section>
+
+<!-- 新社梯田 -->
+<section class="rows roomsec" id="xinshe">
+  <article class="row">
+    <div class="pic"><img src="public/images/房型/梯田/IMG_7312.jpeg" alt="新社梯田雙人房" /></div>
+    <div class="txt">
+      <div class="no">03 / 03</div>
+      <h3>新社梯田</h3>
+      <div class="ren">Xinshe Terrace</div>
+      <p class="desc">隨性迷人的 2 人房，望向新社梯田與海。給想要安靜兩人時光的旅人。<br>An easygoing room for two, facing the terraced fields and the sea.</p>
+      <div class="stats">
+        <div class="stat"><div class="k">床型 Bed</div><div class="v">King <small>182×212 cm</small></div></div>
+        <div class="stat"><div class="k">人數 Sleeps</div><div class="v">2 人 <small>最多可加 2 床</small></div></div>
+        <div class="stat"><div class="k">景觀 View</div><div class="v">梯田・海</div></div>
+      </div>
+      <a class="more" href="https://www.facebook.com/share/1RMRox2P5F/">FB 相簿看更多 →</a>
+    </div>
+  </article>
+</section>
+
+<!-- 全房共通設施 -->
+<section class="common">
+  <div style="text-align:center;">
+    <div class="eyebrow">In Every Room</div>
+    <h2 style="font-size:clamp(30px,4.4vw,48px);font-weight:800;letter-spacing:0.03em;margin-top:14px;">每一間房都備有</h2>
+  </div>
+  <ul class="featlist grid">
+    <li>每間皆面海 <small>Ocean view in every room</small></li>
+    <li>無線上網 <small>Free Wi-Fi</small></li>
+    <li>乾溼分離衛浴 <small>Separated wet/dry bath</small></li>
+    <li>看海軟水泡澡浴缸 <small>Soft-water tub with sea view</small></li>
+    <li>液晶電視・MOD 平台 <small>LCD TV & MOD</small></li>
+    <li>日立變頻冷暖空調 <small>Hitachi inverter AC, heat & cool</small></li>
+    <li>免治馬桶 <small>Washlet toilet</small></li>
+    <li>吹風機・快煮壺・小冰箱 <small>Hair dryer · kettle · mini-fridge</small></li>
+    <li>簡約式衣櫥與衣架 <small>Simple wardrobe & hangers</small></li>
+    <li>獨立筒床墊 <small>Pocket-spring mattress</small></li>
+    <li>Allegrini 艾格尼沐浴洗髮潤髮乳 <small>Allegrini bath amenities</small></li>
+    <li>軟水全棟供應 <small>Soft water throughout the house</small></li>
+  </ul>
+  <div style="margin-top:44px;text-align:center;">
+    <img src="public/images/內裝/公廁1.jpeg" alt="衛浴設備" style="width:100%;max-width:980px;height:clamp(220px,28vw,320px);object-fit:cover;display:block;margin:0 auto;" />
+    <p style="font-family:var(--mono);font-size:13px;color:var(--ink-soft);margin-top:22px;letter-spacing:0.04em;">
+      為響應環保，本民宿不提供一次性牙刷牙膏與瓶裝水；全棟過濾，大廳並設微米級濾水器。<br>
+      Eco-policy: no disposable toiletries or bottled water — filtered water throughout.
+    </p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-bg"></div>
+  <div class="eyebrow" style="color:#E9C9A6;">Reserve Your Stay</div>
+  <h2>選好房型了嗎</h2>
+  <a class="btn btn--cream" href="https://line.me/ti/p/~0913516760">以 Line 預訂 →</a>
+  <div class="sub">LINE ID 0913516760　|　加床費用與優惠請見 <a href="房價與優惠.html" style="text-decoration:underline;">房價・優惠</a></div>
+</section>
+
+<footer class="footer">
+  <div class="top">
+    <div class="brand">
+      <b>純粹愛大海</b><small>Pure Love the Sea</small>
+      <p>花蓮縣豐濱鄉・面向太平洋的家庭民宿。一天一組客人，與主人同住，分享海邊的生活。</p>
+    </div>
+    <div>
+      <h4>導覽 Navigate</h4>
+      <ul>
+        <li><a href="index.html">首頁 Home</a></li>
+        <li><a href="房型.html">房型 Rooms</a></li>
+        <li><a href="房價與優惠.html">房價・優惠 Rates</a></li>
+        <li><a href="預訂須知.html">預訂須知 Info</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>聯絡 Contact</h4>
+      <ul>
+        <li>Line ID · 0913516760</li>
+        <li><a href="https://line.me/ti/p/~0913516760">以 Line 預訂 →</a></li>
+        <li>入住 16:00 後・退房 12:00 前</li>
+        <li>花蓮縣豐濱鄉</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bot">
+    <span>© 2026 純粹愛大海 Pure Love the Sea</span>
+    <span>一天一組客人 · 與山海一起生活</span>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
