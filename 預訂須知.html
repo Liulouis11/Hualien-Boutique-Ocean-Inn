@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>預訂須知 Info｜純粹愛大海 Pure Love the Sea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<style>
+  .block{padding:clamp(48px,7vw,84px) var(--pad);}
+  .block--sand{background:var(--sand);}
+  .blockhead{text-align:center;margin-bottom:clamp(30px,4vw,48px);}
+  .blockhead .eyebrow{margin-bottom:12px;}
+  .blockhead h2{font-size:clamp(28px,4.2vw,46px);font-weight:800;letter-spacing:0.03em;}
+  .blockhead p{font-size:clamp(15px,1.5vw,18px);color:var(--ink-soft);margin:16px auto 0;max-width:700px;line-height:1.7;text-wrap:pretty;}
+
+  /* 入住時間雙卡 */
+  .times{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:780px;margin:0 auto;}
+  .times .t{border:1px solid var(--line);background:var(--paper);padding:36px;text-align:center;}
+  .times .t .k{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);}
+  .times .t .v{font-family:var(--grot);font-weight:800;font-size:clamp(40px,6vw,58px);color:var(--wood-deep);margin-top:8px;letter-spacing:0;}
+  .times .t .d{font-size:14px;color:var(--ink-soft);margin-top:6px;}
+
+  /* 須知清單 */
+  .notes{max-width:920px;margin:0 auto;counter-reset:n;}
+  .notes .item{display:grid;grid-template-columns:54px 1fr;gap:22px;padding:24px 0;border-bottom:1px solid var(--line-soft);align-items:start;}
+  .notes .item::before{counter-increment:n;content:counter(n,decimal-leading-zero);
+    font-family:var(--grot);font-weight:800;font-size:18px;color:var(--wood);padding-top:2px;}
+  .notes .item h3{font-size:18px;font-weight:700;}
+  .notes .item p{font-size:15px;color:var(--ink-soft);line-height:1.75;margin-top:8px;text-wrap:pretty;}
+  .notes .item h3 .enh{display:block;font-family:var(--grot);font-size:12px;font-weight:600;letter-spacing:0.05em;
+    color:var(--clay);text-transform:none;margin-top:5px;}
+  .notes .item p .enp{display:block;font-family:var(--grot);font-size:13px;color:var(--ink-faint);margin-top:8px;line-height:1.65;}
+  .enx{font-family:var(--grot);color:var(--ink-faint);font-size:0.82em;letter-spacing:0.01em;}
+  .equip .g h3 .enx,.daily .d h3 .enx{display:block;font-size:12px;margin-top:3px;}
+  .equip .g li .enx,.daily .d li .enx{display:block;margin-top:2px;}
+  .notes .item.hl{background:var(--sand);margin:0 -22px;padding:24px 22px;border-bottom:none;}
+  .notes .item.hl h3{color:var(--wood-deep);}
+
+  /* 設備分組 */
+  .equip{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1080px;margin:0 auto;}
+  .equip .g{border:1px solid var(--line);background:var(--paper);padding:32px 30px;}
+  .equip .g .ico{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--wood);}
+  .equip .g h3{font-size:21px;font-weight:800;margin-top:8px;}
+  .equip .g ul{list-style:none;margin-top:18px;display:grid;gap:9px;}
+  .equip .g li{font-size:15px;color:var(--ink);line-height:1.5;position:relative;padding-left:18px;}
+  .equip .g li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--clay);}
+
+  /* 每日提供 / 招待食材 */
+  .daily{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto;}
+  .daily .d{border:1px solid var(--line);padding:36px;background:var(--paper);}
+  .daily .d h3{font-size:22px;font-weight:800;}
+  .daily .d .en{font-family:var(--grot);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--clay);margin-top:6px;}
+  .daily .d ul{list-style:none;margin-top:20px;display:grid;gap:11px;}
+  .daily .d li{font-size:15px;line-height:1.55;position:relative;padding-left:18px;color:var(--ink);}
+  .daily .d li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--wood);}
+  .daily .d li small{color:var(--ink-faint);}
+
+  /* 娛樂雙欄 */
+  .play{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto;}
+  .play .p{padding:30px 34px;border:1px solid var(--line);background:var(--paper);}
+  .play .p h3{font-size:20px;font-weight:800;}
+  .play .p .chips{margin-top:18px;}
+
+  /* CTA 背景圖 */
+  .cta-bg{position:absolute;inset:0;background-image:url('public/images/環境/戶外1.jpeg');
+    background-size:cover;background-position:center;}
+  .cta-bg::before{content:"";position:absolute;inset:0;background:rgba(28,22,16,0.56);}
+
+  @media(max-width:860px){
+    .times{grid-template-columns:1fr;} .equip{grid-template-columns:1fr;}
+    .daily{grid-template-columns:1fr;} .play{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav nav--solid">
+  <a class="brand" href="index.html"><b>純粹愛大海</b><small>Pure Love the Sea</small></a>
+  <div class="links">
+    <a href="index.html">首頁</a>
+    <a href="房型.html">房型</a>
+    <a href="房價與優惠.html">房價・優惠</a>
+    <a href="預訂須知.html" class="active">預訂須知</a>
+    <a class="book" href="https://line.me/ti/p/~0913516760">Line 預訂</a>
+  </div>
+  <button class="burger" aria-label="選單"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="pagehead">
+  <div class="eyebrow">Before You Book</div>
+  <h1>預訂須知</h1>
+  <div class="lat">A shared home by the sea — please read before booking</div>
+  <p>我們是一個分享海邊生活的民宿，與主人同住。入住前，請花幾分鐘了解我們的接待方式。</p>
+</header>
+
+<!-- 入住時間 -->
+<section class="block">
+  <div class="blockhead"><div class="eyebrow">Check-in / Check-out</div><h2>入住與退房</h2></div>
+  <div class="times">
+    <div class="t"><div class="k">入住 Check-in</div><div class="v">16:00</div><div class="d">下午 4:00 以後</div></div>
+    <div class="t"><div class="k">退房 Check-out</div><div class="v">12:00</div><div class="d">中午 12:00 以前</div></div>
+  </div>
+  <p style="text-align:center;max-width:720px;margin:30px auto 0;color:var(--ink-soft);font-size:15px;line-height:1.7;">
+    主人住在大廳後方及 2 樓。入住時，我們會帶你完整認識環境、各項設備與垃圾分類方式，讓您們能順暢使用所有居家設備，若有損害則須照價賠償。<br>
+    <span style="font-family:var(--grot);font-size:13px;">The hosts live behind the hall and upstairs. On arrival, we'll walk you through the house, its facilities, and how we sort the recycling, so everything is easy to use. Please note that any damage to the equipment is charged at cost.</span>
+  </p>
+</section>
+
+<!-- 預訂前須知 -->
+<section class="block block--sand">
+  <div class="blockhead"><div class="eyebrow">House Notes</div><h2>預訂前須知</h2>
+    <p>住進來之前，這些是我們想先說清楚的事。</p></div>
+  <div class="notes">
+    <div class="item"><div><h3>與主人同住<span class="enh">Living with the hosts</span></h3><p>主人住在大廳後方及 2 樓，這是一個分享海邊生活的民宿。<span class="enp">The hosts live behind the main hall and on the second floor — this is a guesthouse built around sharing a life by the sea.</span></p></div></div>
+    <div class="item"><div><h3>謝絕非住宿訪客・無法接待寵物<span class="enh">No outside visitors · no pets</span></h3><p>民宿內設備與資源由入住旅人享用，但謝絕接待非住宿的訪客，亦無法接待寵物。<span class="enp">Facilities are reserved for staying guests; we cannot host non-staying visitors or pets.</span></p></div></div>
+    <div class="item"><div><h3>早餐與招待食材<span class="enh">Breakfast &amp; welcome ingredients</span></h3><p>早餐由旅人發想料理，冰箱備有招待食材，是主人的心意；可再自行添購不足食材。每天早上 7:00–10:00 供應手作麵包。<span class="enp">Cook your own breakfast from the welcome ingredients we leave in the fridge (our small gift); feel free to top up anything else. Fresh handmade bread is served 7:00–10:00 each morning.</span></p></div></div>
+    <div class="item hl"><div><h3>🐕 兩隻毛小孩・愛妮與黑糖<span class="enh">Annie &amp; Brown Sugar, our two dogs</span></h3><p>她們是中型犬米克斯，個性溫馴親人，平日不栓繩圈養。若你極度害怕狗狗或介意，請斟酌衡量。<span class="enp">Two gentle, friendly medium-sized mixed-breed dogs roam freely off-leash. If you are very afraid of dogs or would mind, please consider carefully.</span></p></div></div>
+    <div class="item"><div><h3>入住與退房時間<span class="enh">Check-in &amp; check-out</span></h3><p>入住：下午 4:00 以後；退房：中午 12:00 以前。<span class="enp">Check-in after 16:00; check-out before 12:00.</span></p></div></div>
+    <div class="item hl"><div><h3>🌬 大廳無冷氣<span class="enh">No air-conditioning in the hall</span></h3><p>大廳只有風扇、自然風與大扇窗戶調節溫度。夏季建議於戶外中庭用餐，傍晚約 5 點後逐漸轉涼、轉為涼爽的落山風。這是我們對大山大海的微薄敬意；若介意公共大廳無空調，請再思考衡量。<span class="enp">The hall is cooled only by fans, sea breeze and large windows. In summer we suggest dining in the courtyard; evenings cool after about 5pm into a pleasant downslope wind. It is our small tribute to the mountains and the sea — if AC-free common areas would bother you, please reconsider.</span></p></div></div>
+    <div class="item"><div><h3>環保・不提供一次性用品<span class="enh">Eco-policy: no disposables</span></h3><p>不提供牙膏、牙刷等一次式盥洗用具，亦不提供瓶裝礦泉水。全棟過濾、大廳設愛惠普 4H2 微米級濾水器，請多喝喝豐濱甜美的水。<span class="enp">We do not provide disposable toothbrushes, toothpaste or bottled water. Water is filtered throughout, with a micron-grade filter in the hall — do enjoy Fengbin's sweet water.</span></p></div></div>
+    <div class="item"><div><h3>環境與設備介紹<span class="enh">House &amp; facilities orientation</span></h3><p>入住時主人會做完整的環境、設備介紹與垃圾分類方式；設備若有損害，須照價賠償。<span class="enp">On arrival the hosts give a full orientation of the house, facilities and recycling. Any damage to equipment is charged at cost.</span></p></div></div>
+    <div class="item"><div><h3>一起維持環境整潔<span class="enh">Keeping the space tidy together</span></h3><p>旅人須合力保持適度整潔；主人也會在旅人外出時稍作整理，降低昆蟲入內干擾。<span class="enp">Please help keep things reasonably tidy; we will also tidy up while you are out, to keep insects from wandering in.</span></p></div></div>
+    <div class="item"><div><h3>大廳與廚房開放時間<span class="enh">Hall &amp; kitchen hours</span></h3><p>室內大廳及廚房：06:30–23:00（22:30 起整理大廳、23:00 熄燈關閉）。海景中庭全日開放。<span class="enp">Indoor hall and kitchen open 06:30–23:00 (tidying from 22:30, lights out and closed at 23:00). The ocean courtyard is open all day.</span></p></div></div>
+    <div class="item"><div><h3>開放式廚房<span class="enh">Open kitchen</span></h3><p>廚房為開放式，請盡量避免油煙過大的料理。<span class="enp">The kitchen is open-plan; please avoid dishes that create heavy, oily smoke.</span></p></div></div>
+    <div class="item"><div><h3>夏天外出時的冷氣<span class="enh">AC while out in summer</span></h3><p>外出時若想保持房間涼爽，建議關機讓壓縮機喘息、拉上窗簾關窗，並善用預約開機，回來時一樣舒適。<span class="enp">When heading out, switch the AC off to rest the compressor, draw the curtains and close the windows, then use the timer so the room is comfortable on your return.</span></p></div></div>
+    <div class="item"><div><h3>軟水・水資源<span class="enh">Soft water &amp; water use</span></h3><p>全棟供應軟水（含外牆水龍頭），軟水機每日供水 9 噸。可攜帶充氣泳池，但建議別太大；夏季若缺水，請斟酌使用水資源。<span class="enp">Soft water is supplied throughout (including the outdoor tap), up to 9 tonnes a day. You may bring an inflatable pool, but keep it modest; in case of summer shortage, please use water sparingly.</span></p></div></div>
+    <div class="item hl"><div><h3>🚭 全面禁菸與煙火<span class="enh">No smoking or fireworks</span></h3><p>客房及室內空間嚴格禁菸及電子煙，違反者罰款 1 萬元。嚴禁煙火炮竹，以免干擾傷害大自然生態。<span class="enp">Smoking and e-cigarettes are strictly prohibited in rooms and indoors (NT$10,000 fine). Fireworks and firecrackers are forbidden to protect the natural ecology.</span></p></div></div>
+    <div class="item"><div><h3>公共區域監視器<span class="enh">CCTV in common areas</span></h3><p>為環境與旅人安全，戶外及公共空間設有監視器；我們會確保隱私，僅供公共安全佐證使用。<span class="enp">For safety, CCTV is installed outdoors and in common areas. Your privacy is protected and footage is used only as evidence for public safety.</span></p></div></div>
+    <div class="item"><div><h3>關於蚊蟲<span class="enh">About insects</span></h3><p>大自然環境難免有蚊蟲，但此地無小黑蚊，蚊子很少且不太叮咬。可放心在這裡好好生活。<span class="enp">Nature means the occasional insect, but there are no biting midges here, and mosquitoes are few and rarely bite. Settle in and enjoy.</span></p></div></div>
+    <div class="item"><div><h3>聯絡方式<span class="enh">Contact</span></h3><p>可用臉書私訊詢問，但以 Line 聯絡更快（ID 0913516760）。<span class="enp">You may message us on Facebook, but Line is faster (ID 0913516760).</span></p></div></div>
+    <div class="item"><div><h3>退費規定<span class="enh">Refund policy</span></h3><p>因一次只接待一組客人，接受訂房即推掉其他預訂。臨時無法前來，一律依交通部「個別旅客訂房定型化契約」退費，並扣手續費 15 元。詳細取消比率見 <a href="房價與優惠.html#cxl" style="color:var(--wood-deep);text-decoration:underline;">房價・優惠</a>。<span class="enp">As we host one group at a time, every booking means turning others away. For last-minute cancellations we refund per the MOTC standard contract for individual travelers, less an NT$15 handling fee. See the full cancellation rates on the <a href="房價與優惠.html#cxl" style="color:var(--ink-faint);text-decoration:underline;">Rates</a> page.</span></p></div></div>
+  </div>
+</section>
+
+<!-- 設備 -->
+<section class="block">
+  <div class="blockhead"><div class="eyebrow">Facilities</div><h2>設備一覽</h2>
+    <p>一個能自在生活的家，需要的它大致都有。<br><span class="enx" style="font-size:14px;">Pretty much everything a home for living needs.</span></p></div>
+  <div class="equip">
+    <div class="g">
+      <div class="ico">Kitchen 廚房</div><h3>完整廚房<span class="enx">A complete kitchen</span></h3>
+      <ul>
+        <li>全自動咖啡機 <span class="enx">Automatic coffee machine</span></li>
+        <li>溫熱軟水開飲機 <span class="enx">Hot / warm soft-water dispenser</span></li>
+        <li>日立冰箱 <span class="enx">Hitachi fridge</span></li>
+        <li>IH 雙口爐 <span class="enx">Dual IH cooktop</span></li>
+        <li>洗碗機・Glem Gas 烤箱 <span class="enx">Dishwasher · Glem Gas oven</span></li>
+        <li>果汁機 <span class="enx">Blender (not for hot use)</span></li>
+        <li>電鍋・各式鍋具 <span class="enx">Rice cooker · cookware</span></li>
+        <li>中庭壁爐 烤牛排／披薩 <span class="enx">Courtyard fireplace — steak / pizza (by request)</span></li>
+        <li>卡式瓦斯爐 <span class="enx">Portable gas stove (by request)</span></li>
+        <li>韓式烤肉盤 <span class="enx">Korean BBQ grill</span></li>
+        <li>料理用油・基本調味料 <span class="enx">Cooking oil · basic seasonings</span></li>
+      </ul>
+    </div>
+    <div class="g">
+      <div class="ico">Laundry 洗衣</div><h3>洗衣設備<span class="enx">Laundry</span></h3>
+      <ul>
+        <li>洗衣機 <span class="enx">Washer</span></li>
+        <li>烘衣機 <span class="enx">Dryer</span></li>
+        <li>曬衣間 <span class="enx">Drying room</span></li>
+        <li>洗衣用品 <span class="enx">Detergent &amp; supplies</span></li>
+      </ul>
+      <div class="ico" style="margin-top:30px;">Baby 嬰幼兒</div><h3>嬰兒用品<span class="enx">For babies</span></h3>
+      <ul>
+        <li>嬰兒澡盆・小凳子 <span class="enx">Baby bath · stool</span></li>
+        <li>幼兒餐椅・嬰兒餐具 <span class="enx">High chair · baby tableware</span></li>
+        <li>奶瓶紫外線烘乾機 <span class="enx">UV bottle dryer</span></li>
+        <li style="color:var(--ink-faint);"><small>以上請於訂房時提前告知　Please request when booking</small></li>
+      </ul>
+    </div>
+    <div class="g">
+      <div class="ico">In Room 房內</div><h3>每房皆備<span class="enx">In every room</span></h3>
+      <ul>
+        <li>面海・無線上網 <span class="enx">Sea view · Wi-Fi</span></li>
+        <li>乾溼分離衛浴 <span class="enx">Separated wet / dry bath</span></li>
+        <li>看海軟水泡澡浴缸 <span class="enx">Soft-water tub with sea view</span></li>
+        <li>日立變頻冷暖 <span class="enx">Hitachi inverter AC</span></li>
+        <li>免治馬桶・液晶電視 MOD <span class="enx">Washlet · LCD TV &amp; MOD</span></li>
+        <li>吹風機・快煮壺・小冰箱 <span class="enx">Hair dryer · kettle · mini-fridge</span></li>
+        <li>獨立筒床墊 <span class="enx">Pocket-spring mattress</span></li>
+        <li>Allegrini 艾格尼沐浴組 <span class="enx">Allegrini bath set</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 每日提供 / 招待食材 -->
+<section class="block block--sand">
+  <div class="blockhead"><div class="eyebrow">Daily &amp; Welcome</div><h2>每日提供與首日招待</h2>
+    <p>從一杯現磨咖啡與剛烤好的麵包開始一天。<br><span class="enx" style="font-size:14px;">Start the day with fresh coffee and bread from the oven.</span></p></div>
+  <div class="daily">
+    <div class="d">
+      <h3>每日提供</h3><div class="en">Every day</div>
+      <ul>
+        <li>現磨咖啡機 <span class="enx">Coffee machine, beans included</span></li>
+        <li>手工烘焙貝果・天然酸種麵包 <span class="enx">Handmade bagels · natural sourdough</span></li>
+        <li>多種歐式麵包・香軟吐司 <span class="enx">Assorted European breads · soft toast</span></li>
+        <li>Nancy 會為你準備最佳狀態的熱麵包 <span class="enx">Nancy warms your bread to its best (by arrangement)</span></li>
+        <li>不確定何時起床，也可自取中島麵包加熱烘烤 <span class="enx">Or help yourself from the island and toast it anytime</span></li>
+      </ul>
+    </div>
+    <div class="d">
+      <h3>首日招待食材</h3><div class="en">Welcome on day one</div>
+      <ul>
+        <li>牛奶一罐 <span class="enx">A carton of milk (or soy milk)</span></li>
+        <li>新鮮雞蛋・每人 2 顆 <span class="enx">Fresh eggs · 2 per person</span></li>
+        <li>當季水果 <span class="enx">Seasonal fruit</span></li>
+        <li>風味豬肉片・每人 1 片 <span class="enx">Seasoned pork · 1 per person</span></li>
+        <li>蔥抓餅・每人 1 片 <span class="enx">Scallion pancake · 1 per person</span></li>
+        <li>零食組・茶包與即溶麥片組合 <span class="enx">Snacks · tea &amp; instant cereal</span></li>
+        <li style="color:var(--ink-faint);"><small>續住若覺不足，可至光豐農會超市採買　Top up at the Guangfeng Farmers' Assoc. supermarket</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 娛樂 -->
+<section class="block">
+  <div class="blockhead"><div class="eyebrow">Things to Do</div><h2>晴天與雨天</h2>
+    <p>不管天氣怎樣，都有好玩的事。<br><span class="enx" style="font-size:14px;">Something to do, rain or shine.</span></p></div>
+  <div class="play">
+    <div class="p"><h3>☀️ 晴天娛樂器材<span class="enx" style="display:block;font-size:12px;margin-top:4px;">Sunny-day gear</span></h3>
+      <div class="chips"><span>羽毛球 Badminton</span><span>沙灘玩沙組 Beach sand toys</span><span>野餐墊 Picnic mat</span><span>大型跳繩 Giant skipping rope</span></div>
+    </div>
+    <div class="p"><h3>🌧 雨天室內方案<span class="enx" style="display:block;font-size:12px;margin-top:4px;">Rainy-day indoors</span></h3>
+      <div class="chips"><span>馬來西亞棋 Congkak</span><span>圍棋 Go</span><span>多款桌遊 Board games</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-bg"></div>
+  <div class="eyebrow" style="color:#E9C9A6;">Reserve Your Stay</div>
+  <h2>都了解了，來訂房吧</h2>
+  <a class="btn btn--cream" href="https://line.me/ti/p/~0913516760">以 Line 預訂 →</a>
+  <div class="sub">LINE ID 0913516760　|　臉書私訊也可以，但 Line 更快</div>
+</section>
+
+<footer class="footer">
+  <div class="top">
+    <div class="brand">
+      <b>純粹愛大海</b><small>Pure Love the Sea</small>
+      <p>花蓮縣豐濱鄉・面向太平洋的家庭民宿。一天一組客人，與主人同住，分享海邊的生活。</p>
+    </div>
+    <div>
+      <h4>導覽 Navigate</h4>
+      <ul>
+        <li><a href="index.html">首頁 Home</a></li>
+        <li><a href="房型.html">房型 Rooms</a></li>
+        <li><a href="房價與優惠.html">房價・優惠 Rates</a></li>
+        <li><a href="預訂須知.html">預訂須知 Info</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>聯絡 Contact</h4>
+      <ul>
+        <li>Line ID · 0913516760</li>
+        <li><a href="https://line.me/ti/p/~0913516760">以 Line 預訂 →</a></li>
+        <li>入住 16:00 後・退房 12:00 前</li>
+        <li>花蓮縣豐濱鄉</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bot">
+    <span>© 2026 純粹愛大海 Hualien Boutique Ocean inn</span>
+    <span>一天一組客人 · 與山海一起生活</span>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
