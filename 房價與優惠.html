@@ -268,8 +268,8 @@
       <div class="rc-nights">${r.cn}<small>${r.en}</small></div>
       <div class="rc-price"><span class="cur">每晚 NT$</span><b>${r.price.toLocaleString()}</b></div>
       <div class="rc-per">/ 晚 per night</div>
-      <div class="rc-sub">${r.n} 晚合計 NT$ ${(r.price*r.n).toLocaleString()}</div>
-      ${save>0?`<div class="rc-tag">每晚省 ${save.toLocaleString()}</div>`:`<div class="rc-tag rc-tag--ghost">標準價</div>`}
+      <div class="rc-sub">${r.n} 晚合計 NT$ ${(r.price*r.n).toLocaleString()}<br><span style="font-family:var(--grot);font-size:10px;opacity:0.7;">${r.n}-night total NT$ ${(r.price*r.n).toLocaleString()}</span></div>
+      ${save>0?`<div class="rc-tag">每晚省 ${save.toLocaleString()}<br><span style="font-size:9px;font-weight:400;">Save NT$${save.toLocaleString()}/night</span></div>`:`<div class="rc-tag rc-tag--ghost">標準價<br><span style="font-size:9px;">Standard</span></div>`}
     </div>`;
   }).join('');
 
