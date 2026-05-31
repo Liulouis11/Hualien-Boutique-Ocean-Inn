@@ -198,6 +198,21 @@ section{position:relative;}
   .row.rev .pic{order:0;}
   .row .pic{min-height:clamp(260px,60vw,420px);}
   .row .txt{padding:clamp(32px,8vw,56px) clamp(24px,6vw,48px);}
+
+  /* 手機上每個房間之間加明顯分隔，避免跨區誤讀 */
+  .rows .row + .row{border-top:4px solid var(--sand-deep);}
+  /* 文字區塊底部多一點空間，讓讀者清楚一間已結束 */
+  .rows .row .txt{padding-bottom:clamp(40px,10vw,64px);}
+  /* 照片上方顯示房號標籤，讓讀者一看就知道這是哪間的照片 */
+  .rows .row .pic{position:relative;}
+  .rows .row .pic::before{
+    content:attr(data-label);
+    position:absolute;top:0;left:0;z-index:3;
+    font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--paper);background:rgba(42,38,32,0.55);
+    padding:8px 14px;pointer-events:none;
+  }
+
   .footer .top{grid-template-columns:1fr;gap:32px;}
   .nav .links{display:none;}
   .nav .burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
