@@ -60,7 +60,9 @@ section{position:relative;}
 .nav .links a:hover{opacity:1;}
 .nav .links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:currentColor;}
 .nav .book{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
-  border:1.5px solid currentColor;padding:9px 16px;transition:background .2s,color .2s;}
+  border:1.5px solid currentColor;padding:9px 16px;transition:background .2s,color .2s;
+  display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.1;}
+.nav .book small{font-size:9px;letter-spacing:0.16em;opacity:0.8;}
 .nav--over .book:hover{background:var(--paper);color:var(--ink);}
 .nav--solid .book{background:var(--wood);color:var(--paper);border-color:var(--wood);}
 .nav--solid .book:hover{background:var(--wood-deep);border-color:var(--wood-deep);}
