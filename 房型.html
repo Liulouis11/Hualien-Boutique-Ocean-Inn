@@ -22,6 +22,25 @@
   .cta-bg{position:absolute;inset:0;background-image:url('public/images/環境/中庭用餐桌.jpeg');background-size:cover;background-position:center;}
   .cta-bg::before{content:"";position:absolute;inset:0;background:rgba(28,22,16,0.56);}
   @media(max-width:860px){ .common .grid{grid-template-columns:1fr;} }
+
+  /* ── Lightbox ── */
+  .lb-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(20,16,12,0.92);flex-direction:column;align-items:center;justify-content:center;}
+  .lb-overlay.open{display:flex;}
+  .lb-close{position:absolute;top:18px;right:22px;font-size:32px;color:#fff;cursor:pointer;line-height:1;opacity:0.7;transition:opacity .2s;border:none;background:none;}
+  .lb-close:hover{opacity:1;}
+  .lb-main{position:relative;display:flex;align-items:center;justify-content:center;width:100%;max-height:72vh;}
+  .lb-main img{max-width:90vw;max-height:72vh;object-fit:contain;display:block;border-radius:2px;}
+  .lb-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:36px;color:#fff;cursor:pointer;opacity:0.6;transition:opacity .2s;border:none;background:none;padding:0 16px;line-height:1;}
+  .lb-arrow:hover{opacity:1;}
+  .lb-prev{left:0;} .lb-next{right:0;}
+  .lb-counter{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-top:14px;}
+  .lb-thumbs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:90vw;margin-top:16px;overflow-y:auto;max-height:96px;}
+  .lb-thumbs img{width:56px;height:56px;object-fit:cover;cursor:pointer;opacity:0.55;border:2px solid transparent;transition:opacity .2s,border-color .2s;flex-shrink:0;}
+  .lb-thumbs img.active,.lb-thumbs img:hover{opacity:1;border-color:#fff;}
+  .gallery-btn{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-family:var(--grot);font-size:14px;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--wood-deep);border-bottom:1.5px solid var(--wood);
+    padding-bottom:6px;width:fit-content;transition:gap .2s;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;}
+  .gallery-btn:hover{gap:16px;}
 </style>
 </head>
 <body>
@@ -59,7 +78,7 @@
         <div class="stat"><div class="k">人數 Sleeps</div><div class="v">4 人 <small>可加 1 床 · up to +1 bed</small></div></div>
         <div class="stat"><div class="k">樓層 Floor</div><div class="v">平面 <small>Ground</small></div></div>
       </div>
-      <a class="more" href="https://www.facebook.com/share/151w2YS9Zm/">FB 相簿 · More Photos →</a>
+      <button class="gallery-btn" onclick="openGallery('brownie')">看全部照片 · All Photos →</button>
     </div>
   </article>
 </section>
@@ -79,7 +98,7 @@
         <div class="stat"><div class="k">特色 Note</div><div class="v">香杉閣樓</div></div>
       </div>
       <p class="meta" style="color:var(--wood-deep);">⚠ 閣樓階梯較陡，10 歲以下請家長特別留意孩童安全。<br>Loft stairs are steep — please watch children under 10.</p>
-      <a class="more" href="https://www.facebook.com/share/15MPStsqdy/">FB 相簿 · More Photos →</a>
+      <button class="gallery-btn" onclick="openGallery('tiaolang')">看全部照片 · All Photos →</button>
     </div>
   </article>
 </section>
@@ -98,7 +117,7 @@
         <div class="stat"><div class="k">人數 Sleeps</div><div class="v">2 人 <small>最多可加 2 床 · up to +2 beds</small></div></div>
         <div class="stat"><div class="k">景觀 View</div><div class="v">梯田・海</div></div>
       </div>
-      <a class="more" href="https://www.facebook.com/share/1RMRox2P5F/">FB 相簿 · More Photos →</a>
+      <button class="gallery-btn" onclick="openGallery('xinshe')">看全部照片 · All Photos →</button>
     </div>
   </article>
 </section>
@@ -173,6 +192,107 @@
   </div>
 </footer>
 
+<!-- Lightbox -->
+<div class="lb-overlay" id="lb">
+  <button class="lb-close" onclick="closeLB()" aria-label="關閉">✕</button>
+  <div class="lb-main">
+    <button class="lb-arrow lb-prev" onclick="moveLB(-1)" aria-label="上一張">‹</button>
+    <img id="lb-img" src="" alt="" />
+    <button class="lb-arrow lb-next" onclick="moveLB(1)" aria-label="下一張">›</button>
+  </div>
+  <div class="lb-counter" id="lb-counter"></div>
+  <div class="lb-thumbs" id="lb-thumbs"></div>
+</div>
+
+<script>
+const GALLERIES = {
+  brownie: {
+    name: '布朗尼 Brownie',
+    photos: [
+      'public/images/房型/布朗尼/IMG_1954.jpeg',
+      'public/images/房型/布朗尼/IMG_6064.jpeg',
+      'public/images/房型/布朗尼/IMG_7296.jpeg',
+      'public/images/房型/布朗尼/IMG_7297.jpeg',
+      'public/images/房型/布朗尼/IMG_7298.jpeg',
+      'public/images/房型/布朗尼/IMG_7299.jpeg',
+      'public/images/房型/布朗尼/IMG_7300.jpeg',
+      'public/images/房型/布朗尼/IMG_7301.jpeg',
+      'public/images/房型/布朗尼/IMG_7302.jpeg',
+      'public/images/房型/布朗尼/IMG_7303.jpeg',
+      'public/images/房型/布朗尼/IMG_7304.jpeg',
+    ]
+  },
+  tiaolang: {
+    name: '跳浪 Jumping Waves',
+    photos: [
+      'public/images/房型/跳浪/IMG_4051.jpeg',
+      'public/images/房型/跳浪/IMG_7255.jpeg',
+      'public/images/房型/跳浪/IMG_7256.jpeg',
+      'public/images/房型/跳浪/IMG_7288.jpeg',
+      'public/images/房型/跳浪/IMG_7289.jpeg',
+      'public/images/房型/跳浪/IMG_7291.jpeg',
+      'public/images/房型/跳浪/IMG_7292.jpeg',
+      'public/images/房型/跳浪/IMG_7293.jpeg',
+      'public/images/房型/跳浪/IMG_7294.jpeg',
+      'public/images/房型/跳浪/IMG_7295.jpeg',
+    ]
+  },
+  xinshe: {
+    name: '新社梯田 Xinshe Terrace',
+    photos: [
+      'public/images/房型/梯田/line_97487435151553.jpg',
+      'public/images/房型/梯田/IMG_7312.jpeg',
+      'public/images/房型/梯田/IMG_7313.jpeg',
+      'public/images/房型/梯田/IMG_7314.jpeg',
+      'public/images/房型/梯田/IMG_7315.jpeg',
+      'public/images/房型/梯田/IMG_7316.jpeg',
+    ]
+  }
+};
+
+let cur = 0, photos = [];
+
+function openGallery(id) {
+  const g = GALLERIES[id];
+  photos = g.photos;
+  const lb = document.getElementById('lb');
+  const thumbs = document.getElementById('lb-thumbs');
+  thumbs.innerHTML = photos.map((p, i) =>
+    `<img src="${p}" alt="" onclick="goTo(${i})" />`
+  ).join('');
+  goTo(0);
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLB() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function goTo(i) {
+  cur = (i + photos.length) % photos.length;
+  document.getElementById('lb-img').src = photos[cur];
+  document.getElementById('lb-counter').textContent = `${cur + 1} / ${photos.length}`;
+  document.querySelectorAll('.lb-thumbs img').forEach((el, j) => {
+    el.classList.toggle('active', j === cur);
+  });
+  document.querySelectorAll('.lb-thumbs img')[cur]?.scrollIntoView({block:'nearest',inline:'nearest'});
+}
+
+function moveLB(dir) { goTo(cur + dir); }
+
+document.getElementById('lb').addEventListener('click', function(e) {
+  if (e.target === this) closeLB();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLB();
+  if (e.key === 'ArrowLeft') moveLB(-1);
+  if (e.key === 'ArrowRight') moveLB(1);
+});
+</script>
 <script src="site.js"></script>
 </body>
 </html>
